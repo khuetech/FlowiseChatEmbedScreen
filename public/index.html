@@ -1,0 +1,152 @@
+<!--
+  NOTE: This .html file (and public folder) is optional and can be safely deleted.
+  It serves only as a demo/test page.
+  
+  The chatbot can be embedded directly on any allowed domain using the embed script that
+  is generated when starting the server.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flowise Chatbot Widget</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="module">
+        import Chatbot from './web.js'
+
+        // Example initialization:
+        // If your .env contains:
+        // agent1=xyz789-uvw456,https://example.com
+        // support=abc123-def456,https://example.com
+        // salesbot=ghi123-jkl456,https://example.com
+        //
+        // Then use the environment variable name as chatflowid:
+        Chatbot.init({
+            chatflowid: "f0a70fae-157a-4a49-a28d-402a0a463a4b",
+            apiHost: "https://flowise.anhship.com",
+            chatflowConfig: {
+                /* Chatflow Config */
+            },
+            observersConfig: {
+                /* Observers Config */
+                observeUserInput: (userInput) => {
+                    console.log({ userInput });
+                },
+                // The bot message stack has changed
+                observeMessages: (messages) => {
+                    console.log({ messages });
+                },
+                // The bot loading signal changed
+                observeLoading: (loading) => {
+                    console.log({ loading });
+                },
+            },
+            theme: {
+                button: {
+                    backgroundColor: '#3B81F6',
+                    right: 10,
+                    bottom: 60,
+                    size: 48,
+                    dragAndDrop: true,
+                    iconColor: 'white',
+                    customIconSrc: 'https://booking.anhship.com/artnest/wp-content/uploads/chatbot/icon-support.svg',
+                    autoWindowOpen: {
+                        autoOpen: true,
+                        openDelay: 2,
+                        autoOpenOnMobile: false
+                    }
+                },
+                tooltip: {
+                    showTooltip: true,
+                    tooltipMessage: '👋 Chat AI',
+                    tooltipBackgroundColor: 'black',
+                    tooltipTextColor: 'white',
+                    tooltipFontSize: 16
+                },
+                disclaimer: {
+                    title: 'Disclaimer',
+                    message: "By using this chatbot, you agree to the <a target=\"_blank\" href=\"https://flowiseai.com/terms\">Terms & Condition</a>",
+                    textColor: 'black',
+                    buttonColor: '#3b82f6',
+                    buttonText: 'Start Chatting',
+                    buttonTextColor: 'white',
+                    blurredBackgroundColor: 'rgba(0, 0, 0, 0.4)',
+                    backgroundColor: 'white'
+                },
+                customCSS: ``,
+                chatWindow: {
+                    showTitle: true,
+                    showAgentMessages: true,
+                    title: 'Art Nest Hotel - Support 24/7',
+                    titleAvatarSrc: 'https://booking.anhship.com/artnest/wp-content/uploads/chatbot/icon-support.svg',
+                    welcomeMessage: 'Hello! I am Ktech, receptionist at Art Nest Hotel Nha Trang. May I help you?',
+                    errorMessage: 'This is a custom error message',
+                    backgroundColor: '#ffffff',
+                    backgroundImage: 'enter image path or link',
+                    height: 700,
+                    width: 450,
+                    fontSize: 13,
+                    //                 starterPrompts: [
+                    //                     "Booking",
+                    // 					"About Art Nest",
+                    //                     "I have a question"
+                    //                 ],
+                    starterPromptFontSize: 12,
+                    clearChatOnReload: false,
+                    sourceDocsTitle: 'Sources:',
+                    renderHTML: true,
+                    botMessage: {
+                        backgroundColor: '#f7f8ff',
+                        textColor: '#303235',
+                        showAvatar: true,
+                        avatarSrc: 'https://booking.anhship.com/artnest/wp-content/uploads/chatbot/icon-bot.svg'
+                    },
+                    userMessage: {
+                        backgroundColor: '#3B81F6',
+                        textColor: '#ffffff',
+                        showAvatar: true,
+                        avatarSrc: 'https://booking.anhship.com/artnest/wp-content/uploads/chatbot/icon-customer.svg'
+                    },
+                    textInput: {
+                        placeholder: 'Type your question',
+                        backgroundColor: '#ffffff',
+                        textColor: '#303235',
+                        sendButtonColor: '#3B81F6',
+                        maxChars: 50,
+                        maxCharsWarningMessage: 'You exceeded the characters limit. Please input less than 50 characters.',
+                        autoFocus: true,
+                        sendMessageSound: true,
+                        sendSoundLocation: 'https://booking.anhship.com/artnest/wp-content/uploads/chatbot/send-message.mp3',
+                        receiveMessageSound: true,
+                        receiveSoundLocation: 'https://booking.anhship.com/artnest/wp-content/uploads/chatbot/send-message.mp3'
+                    },
+                    feedback: {
+                        color: '#303235'
+                    },
+                    dateTimeToggle: {
+                        date: true,
+                        time: true
+                    },
+                    footer: {
+                        textColor: '#303235',
+                        text: 'Powered by',
+                        company: 'Sitloo',
+                        companyLink: 'https://sitloo.com'
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
